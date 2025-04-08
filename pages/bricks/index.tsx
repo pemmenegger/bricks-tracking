@@ -1,5 +1,8 @@
 import React from "react";
 import BricksLayout from "@/components/layout/BricksLayout";
+import InfoCard from "@/components/ui/InfoCard";
+import MateriaButton from "@/components/ui/MaterialButton";
+import InfoWithVideo from "@/components/ui/InfoWithVideo";
 
 export default function Bricks() {
   const handleBrickClick = (brickType: any) => {
@@ -40,51 +43,173 @@ export default function Bricks() {
           </div>
 
           {/* Right Info Panel - Now Horizontal */}
-          <div className="w-2/3 flex gap-6">
-            <div className="flex-1 bg-white p-4 rounded-xl shadow text-sm">
-              <h2 className="text-lg font-bold mb-2">INSIEME</h2>
-              <p>
-                <strong>Category:</strong> Art Installation
-              </p>
-              <p>
-                <strong>Materials:</strong>
-              </p>
-              <ul className="pl-4 flex flex-wrap gap-2 mt-1">
-                <li>
-                  <span className="bg-[#eca65e] px-2 py-1 inline-block rounded text-xs">
-                    BRICK_R
-                  </span>
-                </li>
-                <li>
-                  <span className="bg-[#df7e49] px-2 py-1 inline-block rounded text-xs">
-                    BRICK_Y
-                  </span>
-                </li>
-                <li>
-                  <span className="bg-[#c76b4d] px-2 py-1 inline-block rounded text-xs">
-                    BRICK_Z
-                  </span>
-                </li>
-                <li>
-                  <span className="bg-gray-300 px-2 py-1 inline-block rounded text-xs">
-                    MORTAR
-                  </span>
-                </li>
-                <li>
-                  <span className="bg-black text-white px-2 py-1 inline-block rounded text-xs">
-                    LINTEL
-                  </span>
-                </li>
-              </ul>
-              <p className="mt-2">
-                <strong>Dimensions:</strong> H: 400cm, L: 150cm
-              </p>
-              <p>
-                <strong>Weight:</strong> —
-              </p>
-            </div>
+          <InfoWithVideo
+            infoCardProps={{
+              title: "INSIEME",
+              subtitle: "En_25_50_04",
+              mainColor: "gray",
+              info: [
+                {
+                  label: "Category",
+                  value: <p>Art Installation</p>,
+                },
+                {
+                  label: "Materials",
+                  value: (
+                    <div className="flex flex-col gap-2">
+                      <MateriaButton
+                        label="BRICK_R"
+                        bgColor="bg-clay"
+                        textColor="text-white"
+                        onClick={() => handleBrickClick("BRICK_R")}
+                      />
+                      <MateriaButton
+                        label="BRICK_V"
+                        bgColor="bg-sun"
+                        textColor="text-white"
+                        onClick={() => handleBrickClick("BRICK_V")}
+                      />
+                      <MateriaButton
+                        label="BRICK_Z"
+                        bgColor="bg-peach"
+                        textColor="text-white"
+                        onClick={() => handleBrickClick("BRICK_Z")}
+                      />
+                      <MateriaButton
+                        label="MORTAR"
+                        bgColor="bg-white"
+                        textColor="text-black"
+                        onClick={() => handleBrickClick("MORTAR")}
+                      />
+                      <MateriaButton
+                        label="LINTEL"
+                        bgColor="bg-black"
+                        textColor="text-white"
+                        onClick={() => handleBrickClick("LINTEL")}
+                      />
+                    </div>
+                  ),
+                },
+                {
+                  label: "Dimensions",
+                  value: <div>H 400cm, L 150cm</div>,
+                },
+                {
+                  label: "Weight",
+                  value: <div>-</div>,
+                },
+              ],
+            }}
+            videoSrc="/example.webm"
+          />
 
-            <div className="flex-1 rounded-xl overflow-hidden shadow">
+          {/* <div className="w-2/3 flex gap-6">
+            <InfoCard
+              title="INSIEME"
+              subtitle="En_25_50_04"
+              mainColor="clay"
+              info={[
+                {
+                  label: "Category",
+                  value: <p>Art Installation</p>,
+                },
+                {
+                  label: "Materials",
+                  value: (
+                    <div className="flex flex-col gap-2">
+                      <MateriaButton
+                        label="BRICK_R"
+                        bgColor="bg-clay"
+                        textColor="text-white"
+                        onClick={() => handleBrickClick("BRICK_R")}
+                      />
+                      <MateriaButton
+                        label="BRICK_V"
+                        bgColor="bg-sun"
+                        textColor="text-white"
+                        onClick={() => handleBrickClick("BRICK_V")}
+                      />
+                      <MateriaButton
+                        label="BRICK_Z"
+                        bgColor="bg-peach"
+                        textColor="text-white"
+                        onClick={() => handleBrickClick("BRICK_Z")}
+                      />
+                      <MateriaButton
+                        label="MORTAR"
+                        bgColor="bg-white"
+                        textColor="text-black"
+                        onClick={() => handleBrickClick("MORTAR")}
+                      />
+                      <MateriaButton
+                        label="LINTEL"
+                        bgColor="bg-black"
+                        textColor="text-white"
+                        onClick={() => handleBrickClick("LINTEL")}
+                      />
+                    </div>
+                  ),
+                },
+                { label: "Dimensions", value: <div>H 400cm, L 150cm</div> },
+                { label: "Weight", value: <div>-</div> },
+              ]}
+            /> */}
+
+          {/* <InfoCard
+              title="INSIEME"
+              subtitle="En_25_50_04"
+              mainColor="black"
+              info={[
+                {
+                  label: "Category",
+                  value: <p>Art Installation</p>,
+                },
+                {
+                  label: "Materials",
+                  value: (
+                    <div className="flex flex-col">
+                      <div className="bg-clay text-white p-2 rounded">
+                        BRICK_Z
+                      </div>
+                      <div className="bg-sun text-white p-2 rounded">
+                        SAWDUST
+                      </div>
+                    </div>
+                  ),
+                },
+                { label: "Dimensions", value: <div>H 400cm, L 150cm</div> },
+                { label: "Weight", value: <div>-</div> },
+              ]}
+            />
+
+            <InfoCard
+              title="INSIEME"
+              subtitle="En_25_50_04"
+              mainColor="sun"
+              info={[
+                {
+                  label: "Category",
+                  value: <p>Art Installation</p>,
+                },
+                {
+                  label: "Materials",
+                  value: (
+                    <div className="flex flex-col">
+                      <p>BRICK_R</p>
+                      <p>BRICK_V</p>
+                      <p>BRICK_Z</p>
+                      <p>MORTAR</p>
+                      <p>BRICK_Y</p>
+                    </div>
+                  ),
+                },
+                { label: "Dimensions", value: <div>H 400cm, L 150cm</div> },
+                { label: "Weight", value: <div>-</div> },
+              ]}
+              imageSrc="materials/brick_r_map.png"
+            /> */}
+
+          {/* <div className="flex-1 rounded-xl overflow-hidden shadow">
               <div className="relative">
                 <video
                   className="w-full h-[300px] object-cover"
@@ -95,8 +220,8 @@ export default function Bricks() {
                   Your browser does not support the video tag.
                 </video>
               </div>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
 
         <style jsx>{`

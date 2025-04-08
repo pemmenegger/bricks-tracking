@@ -15,7 +15,7 @@ export default function Header() {
     <header className="flex items-start justify-between">
       <div className="flex flex-col space-y-[6px]">
         <div
-          className="w-[49px] h-[33px] flex items-center justify-center rounded-r-full bg-gray-300"
+          className="w-[49px] h-[33px] flex items-center justify-center rounded-r-full bg-gray"
           onClick={handleHomeClick}
         >
           <img
@@ -26,7 +26,7 @@ export default function Header() {
         </div>
 
         <div
-          className="w-[49px] h-[33px] flex items-center justify-center rounded-r-full bg-gray-300"
+          className="w-[49px] h-[33px] flex items-center justify-center rounded-r-full bg-gray"
           onClick={handleHomeClick}
         >
           <img
@@ -38,11 +38,11 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="h-[33px] w-[182px] bg-gray-300 flex items-center justify-center rounded-b-xl">
+      <div className="h-[33px] w-[182px] bg-gray flex items-center justify-center rounded-b-xl">
         <p className="text-white rounded-b-xl text-xl font-semibold">INSIEME</p>
       </div>
 
-      <div className="h-[56px] w-[182px] bg-gray-300 flex items-center justify-center rounded-bl-xl">
+      <div className="h-[56px] w-[182px] bg-gray flex items-center justify-center rounded-bl-xl">
         <p className="text-white rounded-b-xl text-xl font-semibold">
           FULL MOVIE
         </p>
