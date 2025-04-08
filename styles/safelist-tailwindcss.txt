@@ -2,7 +2,9 @@ bg-sun
 bg-clay
 bg-black
 bg-gray
+bg-gray-light
 border-sun
 border-clay
 border-black
 border-gray
+border-gray-light

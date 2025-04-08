@@ -62,7 +62,7 @@ const Timeline: React.FC<TimelineProps> = ({
   };
 
   return (
-    <div className="w-full bg-gray-400">
+    <div className="w-full bg-gray">
       <div className="relative w-full h-[100px]">
         {highlightRanges.map((range, idx) => (
           <div
