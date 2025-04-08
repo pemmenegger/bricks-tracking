@@ -28,7 +28,7 @@ export default function Home() {
       </div>
 
       <div className="w-1/2 bg-white flex items-center justify-center">
-        <Link href="/insieme">
+        <Link href="/bricks">
           <button className="w-40 h-40 rounded-full bg-gray-300 shadow-md flex items-center justify-center text-center text-black font-bold tracking-widest">
             <span>
               EXPLORE
