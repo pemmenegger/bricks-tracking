@@ -1,23 +1,18 @@
 import React from "react";
+import { useTimeline } from "@/context/TimelineContext";
 
-type HighlightRange = {
-  from: number;
-  to: number;
-  color: string;
-  area?: "full" | "top" | "bottom";
+export type TimelineColoredRange = {
+  startYear: number;
+  endYear: number;
+  bgColorClass: string;
+  area: "full" | "top" | "bottom";
 };
 
-type TimelineProps = {
-  startYear?: number;
-  endYear?: number;
-  highlightRanges?: HighlightRange[];
-};
+const Timeline: React.FC = () => {
+  const { highlightRanges } = useTimeline();
 
-const Timeline: React.FC<TimelineProps> = ({
-  startYear = 1800,
-  endYear = 2050,
-  highlightRanges = [],
-}) => {
+  const startYear = 1800;
+  const endYear = 2050;
   const yearSpan = endYear - startYear;
   const totalSteps = yearSpan / 10;
   const paddingPercent = 2;
@@ -33,25 +28,19 @@ const Timeline: React.FC<TimelineProps> = ({
     return paddingPercent + stepFraction * (100 - 2 * paddingPercent);
   };
 
-  const getRangeStyle = (
-    from: number,
-    to: number,
-    color: string,
-    area: "full" | "top" | "bottom" = "full"
-  ) => {
-    const leftPercent = getCenterPercent(from);
-    const rightPercent = getCenterPercent(to);
+  const getRangeStyle = (range: TimelineColoredRange) => {
+    const leftPercent = getCenterPercent(range.startYear);
+    const rightPercent = getCenterPercent(range.endYear);
     const widthPercent = rightPercent - leftPercent;
 
     const baseStyle: React.CSSProperties = {
       position: "absolute",
       left: `${leftPercent}%`,
       width: `${widthPercent}%`,
-      backgroundColor: color,
       opacity: 0.6,
     };
 
-    switch (area) {
+    switch (range.area) {
       case "top":
         return { ...baseStyle, height: "50%", top: 0 };
       case "bottom":
@@ -67,7 +56,8 @@ const Timeline: React.FC<TimelineProps> = ({
         {highlightRanges.map((range, idx) => (
           <div
             key={idx}
-            style={getRangeStyle(range.from, range.to, range.color, range.area)}
+            className={range.bgColorClass}
+            style={getRangeStyle(range)}
           />
         ))}
 

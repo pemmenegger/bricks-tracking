@@ -1,16 +1,9 @@
-// context/TimelineContext.tsx
 import React, { createContext, useContext, useState } from "react";
-
-type HighlightRange = {
-  from: number;
-  to: number;
-  color: string;
-  area: "full" | "bottom";
-};
+import { TimelineColoredRange } from "@/components/layout/Timeline";
 
 type TimelineContextType = {
-  highlightRanges: HighlightRange[];
-  setHighlightRanges: (ranges: HighlightRange[]) => void;
+  highlightRanges: TimelineColoredRange[];
+  setHighlightRanges: (ranges: TimelineColoredRange[]) => void;
 };
 
 const TimelineContext = createContext<TimelineContextType | undefined>(
@@ -29,10 +22,11 @@ export const TimelineProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [highlightRanges, setHighlightRanges] = useState<HighlightRange[]>([
-    { from: 1900, to: 2000, color: "#e6d460", area: "full" },
-    { from: 1850, to: 1880, color: "#ff7f50", area: "bottom" },
-  ]);
+  const [highlightRanges, setHighlightRanges] = useState<
+    TimelineColoredRange[]
+  >([]);
+
+  console.log("context Highlight Ranges:", highlightRanges);
 
   return (
     <TimelineContext.Provider value={{ highlightRanges, setHighlightRanges }}>

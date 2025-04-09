@@ -7,7 +7,6 @@ interface InfoWithVideoProps {
 }
 
 const InfoWithVideo: FC<InfoWithVideoProps> = ({ infoCardProps, videoSrc }) => {
-  const mainColor = infoCardProps.mainColor;
   const infoCardRef = useRef<HTMLDivElement>(null);
   const [cardHeight, setCardHeight] = useState<number | null>(null);
 
@@ -31,7 +30,7 @@ const InfoWithVideo: FC<InfoWithVideoProps> = ({ infoCardProps, videoSrc }) => {
         </div>
       </div>
       <div
-        className={`flex-grow rounded-xl overflow-hidden border border-3 shadow-sm border-${mainColor}`}
+        className={`flex-grow rounded-xl overflow-hidden border border-3 shadow-sm ${infoCardProps.theme.borderColor}`}
         style={{ height: cardHeight ?? "auto" }}
       >
         <div className="relative h-full flex items-center justify-center">

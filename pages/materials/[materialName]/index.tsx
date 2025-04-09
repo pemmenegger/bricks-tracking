@@ -1,35 +1,47 @@
-// pages/materials/[materialName].tsx
-
-import BrickR from "@/components/materials/BrickR";
-import BrickV from "@/components/materials/BrickV";
-import BrickZ from "@/components/materials/BrickZ";
-import Mortar from "@/components/materials/Mortar";
-import Lintel from "@/components/materials/Lintel";
 import MaterialsLayout from "@/components/layout/MaterialsLayout";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import React from "react";
+import {
+  BrickRData,
+  BrickVData,
+  BrickZData,
+  LintelData,
+  MaterialData,
+  MortarData,
+} from "@/components/materials/data";
+import { useTimeline } from "@/context/TimelineContext";
 
-const MaterialMap: Record<string, React.FC> = {
-  "brick-r": BrickR,
-  "brick-v": BrickV,
-  "brick-z": BrickZ,
-  mortar: Mortar,
-  lintel: Lintel,
+const MaterialDataMap: Record<string, MaterialData> = {
+  "brick-r": BrickRData,
+  "brick-v": BrickVData,
+  "brick-z": BrickZData,
+  mortar: MortarData,
+  lintel: LintelData,
 };
+
+function MaterialContent({ MaterialData }: { MaterialData: MaterialData }) {
+  const { setHighlightRanges } = useTimeline();
+
+  useEffect(() => {
+    setHighlightRanges(MaterialData?.timelineColoredRanges || []);
+  }, [MaterialData]);
+
+  return <MaterialData.component />;
+}
 
 export default function MaterialPage() {
   const router = useRouter();
   const { materialName } = router.query;
+  const MaterialData = MaterialDataMap[materialName as string];
 
-  const MaterialComponent = MaterialMap[materialName as string];
-
-  if (!MaterialComponent) {
+  if (!MaterialData) {
     return <div>Unknown material</div>;
   }
 
   return (
     <MaterialsLayout>
-      <MaterialComponent />
+      <MaterialContent MaterialData={MaterialData} />
     </MaterialsLayout>
   );
 }
