@@ -27,6 +27,7 @@ export default function Mortar() {
           },
         ],
       }}
+      thumbnailSrc="/materials/brick-r-thumbnail.png"
       videoSrc="/example.webm"
     />
   );

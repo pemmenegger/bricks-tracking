@@ -100,6 +100,7 @@ export default function BrickR() {
           },
         ],
       }}
+      thumbnailSrc="/materials/brick-r-thumbnail.png"
       videoSrc="/example.webm"
     />
   );

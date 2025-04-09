@@ -24,6 +24,7 @@ export default function Bricks() {
             textColor: "text-white",
             bgColor: "bg-gray",
             borderColor: "border-gray",
+            colorValue: "var(--color-gray)",
           },
           info: [
             {
@@ -72,6 +73,7 @@ export default function Bricks() {
             },
           ],
         }}
+        thumbnailSrc="/materials/brick-r-thumbnail.png"
         videoSrc="/example.webm"
       />
     </MaterialsLayout>

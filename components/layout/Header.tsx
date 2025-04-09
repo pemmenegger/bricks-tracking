@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
+import { useVideoOverlay } from "@/context/VideoOverlayContext";
 
 export default function Header() {
+  const { openVideo } = useVideoOverlay();
   const router = useRouter();
 
   const handleHomeClick = () => {
@@ -43,7 +45,10 @@ export default function Header() {
       </div>
 
       <div className="h-[56px] w-[182px] bg-gray flex items-center justify-center rounded-bl-xl">
-        <p className="text-white rounded-b-xl text-xl font-semibold">
+        <p
+          className="text-white rounded-b-xl text-xl font-semibold"
+          onClick={() => openVideo("/example.webm")}
+        >
           FULL MOVIE
         </p>
       </div>

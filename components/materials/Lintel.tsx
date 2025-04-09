@@ -27,6 +27,7 @@ export default function Lintel() {
           },
         ],
       }}
+      thumbnailSrc="/materials/brick-r-thumbnail.png"
       videoSrc="/example.webm"
     />
   );

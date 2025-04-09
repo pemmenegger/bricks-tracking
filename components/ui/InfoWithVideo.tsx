@@ -1,12 +1,21 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import InfoCard, { InfoCardProps } from "@/components/ui/InfoCard";
+import PlayButton from "@/components/ui/PlayButton";
+import { useVideoOverlay } from "@/context/VideoOverlayContext";
 
 interface InfoWithVideoProps {
   infoCardProps: InfoCardProps;
+  thumbnailSrc: string;
   videoSrc: string;
 }
 
-const InfoWithVideo: FC<InfoWithVideoProps> = ({ infoCardProps, videoSrc }) => {
+const InfoWithVideo: FC<InfoWithVideoProps> = ({
+  infoCardProps,
+  thumbnailSrc,
+  videoSrc,
+}) => {
+  const { openVideo } = useVideoOverlay();
+
   const infoCardRef = useRef<HTMLDivElement>(null);
   const [cardHeight, setCardHeight] = useState<number | null>(null);
 
@@ -33,18 +42,17 @@ const InfoWithVideo: FC<InfoWithVideoProps> = ({ infoCardProps, videoSrc }) => {
         className={`flex-grow rounded-xl overflow-hidden border border-3 shadow-sm ${infoCardProps.theme.borderColor}`}
         style={{ height: cardHeight ?? "auto" }}
       >
-        <div className="relative h-full flex items-center justify-center">
-          <video
-            style={{
-              height: "100%",
-              width: "auto",
-              maxWidth: "100%",
-            }}
-            controls
-          >
-            <source src={videoSrc} type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
+        <div className="relative h-full w-full flex items-center justify-center bg-black">
+          <img
+            src={thumbnailSrc}
+            alt="Video thumbnail"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span onClick={() => openVideo(videoSrc)}>
+              <PlayButton primaryColor={infoCardProps.theme.colorValue} />
+            </span>
+          </div>
         </div>
       </div>
     </div>

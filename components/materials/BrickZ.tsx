@@ -27,6 +27,7 @@ export default function BrickZ() {
           },
         ],
       }}
+      thumbnailSrc="/materials/brick-r-thumbnail.png"
       videoSrc="/example.webm"
     />
   );
