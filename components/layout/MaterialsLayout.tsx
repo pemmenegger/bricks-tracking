@@ -8,7 +8,7 @@ function TimelineWrapper() {
   return <Timeline highlightRanges={highlightRanges} />;
 }
 
-export default function BricksLayout({
+export default function MaterialsLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -42,7 +42,7 @@ export default function BricksLayout({
                     key={brick.id}
                     src={`/materials/${brick.id.toLowerCase()}.png`} // Adjust path if needed
                     alt={brick.id}
-                    onClick={() => router.push(`/bricks/${brick.id}`)}
+                    onClick={() => router.push(`/materials/${brick.id}`)}
                     className="w-10 h-10 absolute cursor-pointer animate-pulse-fast"
                     style={{ top: brick.top, left: brick.left }}
                   />

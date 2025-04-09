@@ -1,9 +1,11 @@
 bg-sun
+bg-peach
 bg-clay
 bg-black
 bg-gray
 bg-gray-light
 border-sun
+border-peach
 border-clay
 border-black
 border-gray

@@ -1,0 +1,33 @@
+import InfoWithVideo from "@/components/ui/InfoWithVideo";
+import MaterialButton from "@/components/ui/MaterialButton";
+import React from "react";
+import { BrickZTheme } from "./themes";
+
+export default function BrickZ() {
+  const title = "BRICK Z";
+  const theme = BrickZTheme;
+  return (
+    <InfoWithVideo
+      infoCardProps={{
+        title: title,
+        subtitle: "En_25_50_04",
+        theme: theme,
+        info: [
+          {
+            label: "Category",
+            value: <p>Art Installation</p>,
+          },
+          {
+            label: "Materials",
+            value: (
+              <div className="flex flex-col gap-2">
+                <MaterialButton label={title} theme={theme} />
+              </div>
+            ),
+          },
+        ],
+      }}
+      videoSrc="/example.webm"
+    />
+  );
+}

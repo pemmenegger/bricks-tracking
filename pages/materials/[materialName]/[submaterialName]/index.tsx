@@ -1,14 +1,14 @@
-import BricksLayout from "@/components/layout/BricksLayout";
+import MaterialsLayout from "@/components/layout/MaterialsLayout";
 import InfoWithVideo from "@/components/ui/InfoWithVideo";
 import MaterialButton from "@/components/ui/MaterialButton";
 import { useParams } from "next/navigation";
 import React from "react";
 
-interface BrickTypeData {
+interface materialNameData {
   content: React.ReactNode;
 }
 
-const brickTypeData: Record<string, BrickTypeData> = {
+const materialNameData: Record<string, materialNameData> = {
   "brick-r": {
     content: (
       <InfoWithVideo
@@ -161,11 +161,11 @@ const brickTypeData: Record<string, BrickTypeData> = {
   },
 };
 
-export default function BrickTypePage() {
+export default function materialNamePage() {
   const params = useParams();
-  const brickType = brickTypeData[params.type as string];
+  const materialName = materialNameData[params.materialName as string];
 
-  if (!brickType) {
+  if (!materialName) {
     return (
       <div className="p-6">
         <h1 className="text-3xl font-bold capitalize">Unknown</h1>
@@ -174,5 +174,5 @@ export default function BrickTypePage() {
     );
   }
 
-  return <BricksLayout>{brickType.content}</BricksLayout>;
+  return <MaterialsLayout>{materialName.content}</MaterialsLayout>;
 }

@@ -1,19 +1,30 @@
 import React, { use } from "react";
-import BricksLayout from "@/components/layout/BricksLayout";
+import MaterialsLayout from "@/components/layout/MaterialsLayout";
 import MaterialButton from "@/components/ui/MaterialButton";
 import InfoWithVideo from "@/components/ui/InfoWithVideo";
+import {
+  BrickRTheme,
+  BrickVTheme,
+  BrickZTheme,
+  LintelTheme,
+  MortarTheme,
+} from "@/components/materials/themes";
 import { useRouter } from "next/router";
 
 export default function Bricks() {
   const router = useRouter();
 
   return (
-    <BricksLayout>
+    <MaterialsLayout>
       <InfoWithVideo
         infoCardProps={{
           title: "INSIEME",
           subtitle: "En_25_50_04",
-          mainColor: "gray",
+          theme: {
+            textColor: "text-white",
+            bgColor: "bg-gray",
+            borderColor: "border-gray",
+          },
           info: [
             {
               label: "Category",
@@ -24,34 +35,29 @@ export default function Bricks() {
               value: (
                 <div className="flex flex-col gap-2">
                   <MaterialButton
-                    label="BRICK_R"
-                    bgColor="bg-clay"
-                    textColor="text-white"
-                    onClick={() => router.push("/bricks/brick-r")}
+                    label={"BRICK_R"}
+                    theme={BrickRTheme}
+                    onClick={() => router.push("/materials/brick-r")}
                   />
                   <MaterialButton
                     label="BRICK_V"
-                    bgColor="bg-sun"
-                    textColor="text-white"
-                    onClick={() => router.push("/bricks/brick-v")}
+                    theme={BrickVTheme}
+                    onClick={() => router.push("/materials/brick-v")}
                   />
                   <MaterialButton
                     label="BRICK_Z"
-                    bgColor="bg-peach"
-                    textColor="text-white"
-                    onClick={() => router.push("/bricks/brick-z")}
+                    theme={BrickZTheme}
+                    onClick={() => router.push("/materials/brick-z")}
                   />
                   <MaterialButton
                     label="MORTAR"
-                    bgColor="bg-white"
-                    textColor="text-black"
-                    onClick={() => router.push("/bricks/mortar")}
+                    theme={MortarTheme}
+                    onClick={() => router.push("/materials/mortar")}
                   />
                   <MaterialButton
                     label="LINTEL"
-                    bgColor="bg-black"
-                    textColor="text-white"
-                    onClick={() => router.push("/bricks/lintel")}
+                    theme={LintelTheme}
+                    onClick={() => router.push("/materials/lintel")}
                   />
                 </div>
               ),
@@ -172,7 +178,7 @@ export default function Bricks() {
                 { label: "Dimensions", value: <div>H 400cm, L 150cm</div> },
                 { label: "Weight", value: <div>-</div> },
               ]}
-              imageSrc="materials/brick_r_map.png"
+              imageSrc="materials/brick-r-map.png"
             /> */}
 
       {/* <div className="flex-1 rounded-xl overflow-hidden shadow">
@@ -188,6 +194,6 @@ export default function Bricks() {
               </div>
             </div> */}
       {/* </div> */}
-    </BricksLayout>
+    </MaterialsLayout>
   );
 }

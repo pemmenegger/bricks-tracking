@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import { MaterialTheme } from "@/components/materials/themes";
 
 interface InfoItem {
   label: string;
@@ -8,7 +9,7 @@ interface InfoItem {
 export interface InfoCardProps {
   title: string;
   subtitle: string;
-  mainColor: string;
+  theme: MaterialTheme;
   info: InfoItem[];
   imageSrc?: string;
   className?: string;
@@ -17,17 +18,19 @@ export interface InfoCardProps {
 const InfoCard: FC<InfoCardProps> = ({
   title,
   subtitle,
-  mainColor,
   info = [],
+  theme,
   imageSrc,
   className = "",
 }) => {
   return (
     <div
-      className={`rounded-xl border border-3 w-[240px] shadow-sm ${className} border-${mainColor}`}
+      className={`rounded-xl border border-3 w-[240px] shadow-sm ${className} ${theme.borderColor}`}
     >
-      <div className={`mx-auto w-2/3  py-1 rounded-b-xl bg-${mainColor}`}>
-        <p className="text-white text-lg font-bold text-center">{title}</p>
+      <div className={`mx-auto w-2/3  py-1 rounded-b-xl ${theme.bgColor}`}>
+        <p className={`text-lg font-bold text-center ${theme.textColor}`}>
+          {title}
+        </p>
       </div>
 
       {subtitle && (
