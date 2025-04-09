@@ -1,13 +1,13 @@
 import React from "react";
 
-interface MateriaButtonProps {
+interface MaterialButtonProps {
   label: string;
   bgColor: string;
   textColor: string;
   onClick?: () => void;
 }
 
-const MateriaButton: React.FC<MateriaButtonProps> = ({
+const MaterialButton: React.FC<MaterialButtonProps> = ({
   label,
   bgColor,
   textColor,
@@ -23,4 +23,4 @@ const MateriaButton: React.FC<MateriaButtonProps> = ({
   );
 };
 
-export default MateriaButton;
+export default MaterialButton;
