@@ -3,19 +3,21 @@ import { MaterialTheme } from "../materials/themes";
 
 interface MaterialButtonProps {
   label: string;
-  theme: MaterialTheme;
+  bgColorClass: string;
+  textColorClass: string;
   onClick?: () => void;
 }
 
 const MaterialButton: React.FC<MaterialButtonProps> = ({
   label,
-  theme,
+  bgColorClass,
+  textColorClass,
   onClick,
 }) => {
   return (
     <button
       onClick={onClick}
-      className={`text-center h-[18px] flex items-center justify-center rounded-md shadow-md font-bold text-sm tracking-widest uppercase ${theme.bgColor} ${theme.textColor}`}
+      className={`text-center h-[18px] flex items-center justify-center rounded-md shadow-md font-bold text-sm tracking-widest uppercase ${bgColorClass} ${textColorClass}`}
     >
       {label}
     </button>

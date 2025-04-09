@@ -21,7 +21,7 @@ export default function Mortar() {
             label: "Materials",
             value: (
               <div className="flex flex-col gap-2">
-                <MaterialButton label={title} theme={theme} />
+                <MaterialButton {...MortarTheme} label={title} />
               </div>
             ),
           },

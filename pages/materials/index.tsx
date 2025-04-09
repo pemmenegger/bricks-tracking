@@ -21,8 +21,8 @@ export default function Bricks() {
           title: "INSIEME",
           subtitle: "En_25_50_04",
           theme: {
-            textColor: "text-white",
-            bgColor: "bg-gray",
+            textColorClass: "text-white",
+            bgColorClass: "bg-gray",
             borderColor: "border-gray",
             colorValue: "var(--color-gray)",
           },
@@ -36,28 +36,28 @@ export default function Bricks() {
               value: (
                 <div className="flex flex-col gap-2">
                   <MaterialButton
+                    {...BrickRTheme}
                     label={"BRICK_R"}
-                    theme={BrickRTheme}
                     onClick={() => router.push("/materials/brick-r")}
                   />
                   <MaterialButton
+                    {...BrickVTheme}
                     label="BRICK_V"
-                    theme={BrickVTheme}
                     onClick={() => router.push("/materials/brick-v")}
                   />
                   <MaterialButton
+                    {...BrickZTheme}
                     label="BRICK_Z"
-                    theme={BrickZTheme}
                     onClick={() => router.push("/materials/brick-z")}
                   />
                   <MaterialButton
+                    {...MortarTheme}
                     label="MORTAR"
-                    theme={MortarTheme}
                     onClick={() => router.push("/materials/mortar")}
                   />
                   <MaterialButton
+                    {...LintelTheme}
                     label="LINTEL"
-                    theme={LintelTheme}
                     onClick={() => router.push("/materials/lintel")}
                   />
                 </div>

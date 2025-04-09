@@ -2,7 +2,12 @@ import InfoWithVideo from "@/components/ui/InfoWithVideo";
 import InfoCard from "@/components/ui/InfoCard";
 import MaterialButton from "@/components/ui/MaterialButton";
 import React from "react";
-import { BrickRCementTheme, BrickRSawdustTheme, BrickRTheme } from "./themes";
+import {
+  BrickRCementTheme,
+  BrickRSawdustTheme,
+  BrickRTheme,
+  BrickZTheme,
+} from "./themes";
 
 const BrickRCement: React.FC = () => {
   return (
@@ -94,11 +99,33 @@ export default function BrickR() {
             label: "Materials",
             value: (
               <div className="flex flex-col gap-2">
-                <MaterialButton label={title} theme={theme} />
+                <MaterialButton {...BrickRCementTheme} label={"CEMENT"} />
+                <MaterialButton {...BrickRSawdustTheme} label={"SAWDUST"} />
               </div>
             ),
           },
+          {
+            label: "Dimension",
+            value: <p>-</p>,
+          },
+          {
+            label: "Weight Unit",
+            value: <p>-</p>,
+          },
+          {
+            label: "Quantity",
+            value: <p>4</p>,
+          },
+          {
+            label: "Total Weight",
+            value: <p>4 kg</p>,
+          },
+          {
+            label: "Supplier",
+            value: <p>Better Supplier</p>,
+          },
         ],
+        imageSrc: "/materials/brick-r-map.png",
       }}
       thumbnailSrc="/materials/brick-r-thumbnail.png"
       videoSrc="/example.webm"

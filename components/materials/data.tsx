@@ -24,7 +24,7 @@ export const BrickRData: MaterialData = {
     {
       startYear: 1900,
       endYear: 2030,
-      bgColorClass: BrickRTheme.bgColor,
+      bgColorClass: BrickRTheme.bgColorClass,
       area: "full",
     },
   ],
@@ -37,7 +37,7 @@ export const BrickVData: MaterialData = {
     {
       startYear: 1850,
       endYear: 1930,
-      bgColorClass: BrickVTheme.bgColor,
+      bgColorClass: BrickVTheme.bgColorClass,
       area: "full",
     },
   ],
@@ -50,7 +50,7 @@ export const BrickZData: MaterialData = {
     {
       startYear: 1920,
       endYear: 1990,
-      bgColorClass: BrickZTheme.bgColor,
+      bgColorClass: BrickZTheme.bgColorClass,
       area: "full",
     },
   ],
@@ -63,7 +63,7 @@ export const MortarData: MaterialData = {
     {
       startYear: 1950,
       endYear: 2010,
-      bgColorClass: MortarTheme.bgColor,
+      bgColorClass: MortarTheme.bgColorClass,
       area: "full",
     },
   ],
@@ -76,7 +76,7 @@ export const LintelData: MaterialData = {
     {
       startYear: 1910,
       endYear: 1970,
-      bgColorClass: LintelTheme.bgColor,
+      bgColorClass: LintelTheme.bgColorClass,
       area: "full",
     },
   ],

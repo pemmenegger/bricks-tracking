@@ -21,7 +21,7 @@ export default function Lintel() {
             label: "Materials",
             value: (
               <div className="flex flex-col gap-2">
-                <MaterialButton label={title} theme={theme} />
+                <MaterialButton {...LintelTheme} label={title} />
               </div>
             ),
           },

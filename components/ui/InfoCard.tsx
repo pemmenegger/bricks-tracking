@@ -27,8 +27,8 @@ const InfoCard: FC<InfoCardProps> = ({
     <div
       className={`rounded-xl border border-3 w-[240px] shadow-sm ${className} ${theme.borderColor}`}
     >
-      <div className={`mx-auto w-2/3  py-1 rounded-b-xl ${theme.bgColor}`}>
-        <p className={`text-lg font-bold text-center ${theme.textColor}`}>
+      <div className={`mx-auto w-2/3  py-1 rounded-b-xl ${theme.bgColorClass}`}>
+        <p className={`text-lg font-bold text-center ${theme.textColorClass}`}>
           {title}
         </p>
       </div>
