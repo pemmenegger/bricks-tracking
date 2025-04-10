@@ -12,7 +12,7 @@ const SubmaterialLayout: FC<MaterialLayoutProps> = ({
   materialContent,
   submaterialContent,
 }) => {
-  const { props, submaterials, theme } = materialContent;
+  const { submaterials } = materialContent;
 
   if (!submaterials || Object.keys(submaterials).length === 0) {
     return <div>No submaterials available</div>;
@@ -20,12 +20,22 @@ const SubmaterialLayout: FC<MaterialLayoutProps> = ({
 
   return (
     <Layout>
-      <div className="flex flex-row gap-4 items-start">
+      <div className="flex gap-4 items-start">
         <InfoCard materialContent={materialContent} />
 
-        {Object.entries(submaterials).map(([key, submaterial]) => (
-          <InfoCard key={key} materialContent={submaterial} />
-        ))}
+        <div className="relative w-full mt-48 flex gap-4 items-start">
+          {Object.entries(submaterials).map(([key, submaterial]) => {
+            if (submaterial.props.path === submaterialContent.props.path) {
+              return <InfoCard key={key} materialContent={submaterial} />;
+            } else {
+              return (
+                <span className="opacity-20">
+                  <InfoCard key={key} materialContent={submaterial} />
+                </span>
+              );
+            }
+          })}
+        </div>
       </div>
     </Layout>
   );

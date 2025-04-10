@@ -4,8 +4,10 @@ import {
   BrickZTheme,
   LintelTheme,
   MortarTheme,
+  BrickRSawdustTheme,
+  BrickRCementTheme,
 } from "./themes";
-import { TimelineColoredRange } from "@/components/ui/Timeline";
+import { timelineRange } from "@/components/ui/Timeline";
 
 export interface MaterialProps {
   slug: string;
@@ -15,7 +17,7 @@ export interface MaterialProps {
   lineFromId?: string;
   lineToId?: string;
   cardImageSrc?: string;
-  timelineColoredRanges: TimelineColoredRange[];
+  timelineRange?: timelineRange;
 }
 
 export interface MaterialVideoProps {
@@ -28,7 +30,6 @@ export const InsiemeProps: MaterialProps = {
   path: "/materials",
   title: "INSIEME",
   subtitle: "En_25_50_04",
-  timelineColoredRanges: [],
 };
 
 export const InsiemeVideoProps: MaterialVideoProps = {
@@ -44,14 +45,11 @@ export const BrickRProps: MaterialProps = {
   lineFromId: "brick-r-line-from",
   lineToId: "brick-r-line-to",
   cardImageSrc: "/materials/brick-r-map.png",
-  timelineColoredRanges: [
-    {
-      startYear: 1900,
-      endYear: 2030,
-      bgColorClass: BrickRTheme.bgColorClass,
-      area: "full",
-    },
-  ],
+  timelineRange: {
+    startYear: 1850,
+    endYear: 2000,
+    bgColorClass: BrickRTheme.bgColorClass,
+  },
 };
 
 export const BrickRVideoProps: MaterialVideoProps = {
@@ -67,14 +65,11 @@ export const BrickRCementProps: MaterialProps = {
   lineFromId: BrickRProps.lineToId!,
   lineToId: "brick-r-cement-line-to",
   cardImageSrc: "/materials/brick-r-map.png",
-  timelineColoredRanges: [
-    {
-      startYear: 1900,
-      endYear: 2030,
-      bgColorClass: BrickRTheme.bgColorClass,
-      area: "full",
-    },
-  ],
+  timelineRange: {
+    startYear: 1990,
+    endYear: 2000,
+    bgColorClass: BrickRCementTheme.bgColorClass,
+  },
 };
 
 export const BrickRSawdustProps: MaterialProps = {
@@ -85,14 +80,11 @@ export const BrickRSawdustProps: MaterialProps = {
   lineFromId: BrickRProps.lineToId!,
   lineToId: "brick-r-sawdust-line-to",
   cardImageSrc: "/materials/brick-r-map.png",
-  timelineColoredRanges: [
-    {
-      startYear: 1900,
-      endYear: 2030,
-      bgColorClass: BrickRTheme.bgColorClass,
-      area: "full",
-    },
-  ],
+  timelineRange: {
+    startYear: 2030,
+    endYear: 2040,
+    bgColorClass: BrickRSawdustTheme.bgColorClass,
+  },
 };
 
 export const BrickVProps: MaterialProps = {
@@ -102,14 +94,11 @@ export const BrickVProps: MaterialProps = {
   subtitle: "En_25_50_04",
   lineFromId: "brick-v-line-from",
   lineToId: "brick-v-line-to",
-  timelineColoredRanges: [
-    {
-      startYear: 1850,
-      endYear: 1930,
-      bgColorClass: BrickVTheme.bgColorClass,
-      area: "full",
-    },
-  ],
+  timelineRange: {
+    startYear: 1850,
+    endYear: 1930,
+    bgColorClass: BrickVTheme.bgColorClass,
+  },
 };
 
 export const BrickVVideoProps: MaterialVideoProps = {
@@ -125,14 +114,11 @@ export const BrickZProps: MaterialProps = {
   lineFromId: "brick-z-line-from",
   lineToId: "brick-z-line-to",
   cardImageSrc: "/materials/brick-z-map.png",
-  timelineColoredRanges: [
-    {
-      startYear: 1920,
-      endYear: 1990,
-      bgColorClass: BrickZTheme.bgColorClass,
-      area: "full",
-    },
-  ],
+  timelineRange: {
+    startYear: 1920,
+    endYear: 1990,
+    bgColorClass: BrickZTheme.bgColorClass,
+  },
 };
 
 export const BrickZVideoProps: MaterialVideoProps = {
@@ -147,14 +133,11 @@ export const MortarProps: MaterialProps = {
   subtitle: "En_25_50_04",
   lineFromId: "brick-mortar-line-from",
   lineToId: "brick-mortar-line-to",
-  timelineColoredRanges: [
-    {
-      startYear: 1950,
-      endYear: 2010,
-      bgColorClass: MortarTheme.bgColorClass,
-      area: "full",
-    },
-  ],
+  timelineRange: {
+    startYear: 1950,
+    endYear: 2010,
+    bgColorClass: MortarTheme.bgColorClass,
+  },
 };
 
 export const MortarVideoProps: MaterialVideoProps = {
@@ -169,14 +152,11 @@ export const LintelProps: MaterialProps = {
   subtitle: "En_25_50_04",
   lineFromId: "brick-lintel-line-from",
   lineToId: "brick-lintel-line-to",
-  timelineColoredRanges: [
-    {
-      startYear: 1910,
-      endYear: 1970,
-      bgColorClass: LintelTheme.bgColorClass,
-      area: "full",
-    },
-  ],
+  timelineRange: {
+    startYear: 1910,
+    endYear: 1970,
+    bgColorClass: LintelTheme.bgColorClass,
+  },
 };
 
 export const LintelVideoProps: MaterialVideoProps = {

@@ -1,15 +1,18 @@
 import React from "react";
 import { useTimeline } from "@/context/TimelineContext";
 
-export type TimelineColoredRange = {
+export type timelineRange = {
   startYear: number;
   endYear: number;
   bgColorClass: string;
-  area: "full" | "top" | "bottom";
+};
+
+type timelineRangeWithArea = timelineRange & {
+  area: "top" | "bottom" | "full";
 };
 
 const Timeline: React.FC = () => {
-  const { highlightRanges } = useTimeline();
+  const { timelineRanges } = useTimeline();
 
   const startYear = 1800;
   const endYear = 2050;
@@ -28,7 +31,36 @@ const Timeline: React.FC = () => {
     return paddingPercent + stepFraction * (100 - 2 * paddingPercent);
   };
 
-  const getRangeStyle = (range: TimelineColoredRange) => {
+  const isOverlapping = (a: timelineRange, b: timelineRange) => {
+    return a.startYear < b.endYear && b.startYear < a.endYear;
+  };
+
+  const assignAreas = (ranges: timelineRange[]): timelineRangeWithArea[] => {
+    const assigned: timelineRangeWithArea[] = [];
+
+    ranges.forEach((current) => {
+      const overlappingRange = assigned.find((r) => isOverlapping(r, current));
+
+      if (!overlappingRange) {
+        assigned.push({ ...current, area: "full" });
+      } else {
+        if (overlappingRange.area === "full") {
+          overlappingRange.area = "bottom";
+          assigned.push({ ...current, area: "top" });
+        } else if (overlappingRange.area === "top") {
+          assigned.push({ ...current, area: "bottom" });
+        } else if (overlappingRange.area === "bottom") {
+          assigned.push({ ...current, area: "top" });
+        }
+      }
+    });
+
+    return assigned;
+  };
+
+  const resolvedRanges = assignAreas(timelineRanges);
+
+  const getRangeStyle = (range: timelineRangeWithArea) => {
     const leftPercent = getCenterPercent(range.startYear);
     const rightPercent = getCenterPercent(range.endYear);
     const widthPercent = rightPercent - leftPercent;
@@ -53,7 +85,7 @@ const Timeline: React.FC = () => {
   return (
     <div className="w-full bg-gray">
       <div className="relative w-full h-[100px]">
-        {highlightRanges.map((range, idx) => (
+        {resolvedRanges.map((range, idx) => (
           <div
             key={idx}
             className={range.bgColorClass}

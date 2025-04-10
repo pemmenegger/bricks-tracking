@@ -21,9 +21,9 @@ export const BrickRTheme: MaterialTheme = {
 
 export const BrickRSawdustTheme: MaterialTheme = {
   textColorClass: "text-white",
-  bgColorClass: "bg-sun",
-  borderColor: "border-sun",
-  colorValue: "var(--color-sun)",
+  bgColorClass: "bg-clay",
+  borderColor: "border-clay",
+  colorValue: "var(--color-clay)",
 };
 
 export const BrickRCementTheme: MaterialTheme = {

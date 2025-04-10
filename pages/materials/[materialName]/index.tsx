@@ -7,7 +7,7 @@ import { MaterialContentMap } from "@/components/materials/content";
 import MaterialLayout from "@/components/layout/MaterialLayout";
 
 export default function MaterialPage() {
-  const { setHighlightRanges } = useTimeline();
+  const { setTimelineRanges } = useTimeline();
   const { setLines } = useLineDrawer();
   const router = useRouter();
   const { materialName } = router.query;
@@ -15,7 +15,11 @@ export default function MaterialPage() {
   const materialContent = MaterialContentMap[materialName as string];
 
   useEffect(() => {
-    setHighlightRanges(materialContent.props.timelineColoredRanges || []);
+    if (!materialContent) return;
+
+    if (materialContent.props.timelineRange) {
+      setTimelineRanges([materialContent.props.timelineRange]);
+    }
 
     const fromId = materialContent.props.lineFromId;
     const toId = materialContent.props.lineToId;

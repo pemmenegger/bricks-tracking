@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState } from "react";
-import { TimelineColoredRange } from "@/components/ui/Timeline";
+import { timelineRange } from "@/components/ui/Timeline";
 
 type TimelineContextType = {
-  highlightRanges: TimelineColoredRange[];
-  setHighlightRanges: (ranges: TimelineColoredRange[]) => void;
+  timelineRanges: timelineRange[];
+  setTimelineRanges: React.Dispatch<React.SetStateAction<timelineRange[]>>;
+  clearTimelineRanges: () => void;
 };
 
 const TimelineContext = createContext<TimelineContextType | undefined>(
@@ -22,14 +23,20 @@ export const TimelineProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [highlightRanges, setHighlightRanges] = useState<
-    TimelineColoredRange[]
-  >([]);
+  const [timelineRanges, setTimelineRanges] = useState<timelineRange[]>([]);
 
-  console.log("context Highlight Ranges:", highlightRanges);
+  const clearTimelineRanges = () => {
+    setTimelineRanges([]);
+  };
 
   return (
-    <TimelineContext.Provider value={{ highlightRanges, setHighlightRanges }}>
+    <TimelineContext.Provider
+      value={{
+        timelineRanges,
+        setTimelineRanges,
+        clearTimelineRanges,
+      }}
+    >
       {children}
     </TimelineContext.Provider>
   );

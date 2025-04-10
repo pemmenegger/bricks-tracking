@@ -12,20 +12,20 @@ interface MaterialLayoutProps {
 const MaterialLayout: FC<MaterialLayoutProps> = ({ materialContent }) => {
   const { openVideo } = useVideoOverlay();
 
-  // const infoCardRef = useRef<HTMLDivElement>(null);
-  // const [cardHeight, setCardHeight] = useState<number | null>(null);
+  const infoCardRef = useRef<HTMLDivElement>(null);
+  const [cardHeight, setCardHeight] = useState<number | null>(null);
 
-  // useEffect(() => {
-  //   const updateHeight = () => {
-  //     if (infoCardRef.current) {
-  //       setCardHeight(infoCardRef.current.offsetHeight);
-  //     }
-  //   };
+  useEffect(() => {
+    const updateHeight = () => {
+      if (infoCardRef.current) {
+        setCardHeight(infoCardRef.current.offsetHeight);
+      }
+    };
 
-  //   updateHeight();
-  //   window.addEventListener("resize", updateHeight);
-  //   return () => window.removeEventListener("resize", updateHeight);
-  // }, []);
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [materialContent]);
 
   const { videoProps, theme } = materialContent;
 
@@ -35,13 +35,13 @@ const MaterialLayout: FC<MaterialLayoutProps> = ({ materialContent }) => {
 
   return (
     <Layout>
-      <div className="flex flex-row gap-4 items-start">
-        {/* <div ref={infoCardRef}> */}
-        <InfoCard materialContent={materialContent} />
-        {/* </div> */}
+      <div className="flex gap-4 items-start">
+        <div ref={infoCardRef}>
+          <InfoCard materialContent={materialContent} />
+        </div>
         <div
           className={`flex-grow rounded-xl overflow-hidden border border-3 shadow-sm ${theme.borderColor}`}
-          // style={{ height: cardHeight ?? "auto" }}
+          style={{ height: cardHeight ?? "auto" }}
         >
           <div className="relative h-full w-full flex items-center justify-center bg-black">
             <img

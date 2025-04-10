@@ -8,9 +8,7 @@ interface Line {
 }
 
 interface LineDrawerContextType {
-  addLine: (fromId: string, toId: string, color: string) => void;
   clearLines: () => void;
-  replaceWithLine: (fromId: string, toId: string, color: string) => void;
   setLines: React.Dispatch<React.SetStateAction<Line[]>>;
 }
 
@@ -31,22 +29,12 @@ export const LineDrawerProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [lines, setLines] = useState<Line[]>([]);
 
-  const addLine = (fromId: string, toId: string, color: string) => {
-    setLines((prev) => [...prev, { fromId, toId, color }]);
-  };
-
   const clearLines = () => {
     setLines([]);
   };
 
-  const replaceWithLine = (fromId: string, toId: string, color: string) => {
-    setLines([{ fromId, toId, color }]);
-  };
-
   return (
-    <LineDrawerContext.Provider
-      value={{ addLine, clearLines, replaceWithLine, setLines }}
-    >
+    <LineDrawerContext.Provider value={{ clearLines, setLines }}>
       {children}
       <div className="pointer-events-none fixed top-0 left-0 w-full h-full z-50">
         {lines.map((line, index) => (

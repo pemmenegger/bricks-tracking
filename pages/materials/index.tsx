@@ -3,15 +3,17 @@ import MaterialLayout from "@/components/layout/MaterialLayout";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useLineDrawer } from "@/context/LineDrawerContext";
-import { InsiemeProps, InsiemeVideoProps } from "@/components/materials/props";
+import { useTimeline } from "@/context/TimelineContext";
+import { InsiemeProps } from "@/components/materials/props";
 import { MaterialContentMap } from "@/components/materials/content";
 
 export default function Insieme() {
-  const router = useRouter();
-
   const { clearLines } = useLineDrawer();
+  const { clearTimelineRanges } = useTimeline();
+
   useEffect(() => {
     clearLines();
+    clearTimelineRanges();
   }, []);
 
   const insiemeContent = MaterialContentMap[InsiemeProps.slug];

@@ -4,11 +4,10 @@ import React from "react";
 import { useTimeline } from "@/context/TimelineContext";
 import { useLineDrawer } from "@/context/LineDrawerContext";
 import { MaterialContentMap } from "@/components/materials/content";
-import MaterialLayout from "@/components/layout/MaterialLayout";
 import SubmaterialLayout from "@/components/layout/SubmaterialLayout";
 
 export default function SubmaterialPage() {
-  const { setHighlightRanges } = useTimeline();
+  const { setTimelineRanges } = useTimeline();
   const { setLines } = useLineDrawer();
   const router = useRouter();
   const { materialName, submaterialName } = router.query;
@@ -17,16 +16,30 @@ export default function SubmaterialPage() {
   const submaterialContent =
     materialContent?.submaterials?.[submaterialName as string];
 
-  //   useEffect(() => {
-  //     setHighlightRanges(materialContent.props.timelineColoredRanges || []);
+  useEffect(() => {
+    if (!materialContent) return;
 
-  //     const fromId = materialContent.props.lineFromId;
-  //     const toId = materialContent.props.lineToId;
-  //     const color = materialContent.theme.colorValue;
-  //     if (fromId && toId) {
-  //       setLines([{ fromId, toId, color }]);
-  //     }
-  //   }, [materialContent]);
+    if (materialContent.props.timelineRange) {
+      const timelineRanges = [materialContent.props.timelineRange];
+
+      if (materialContent.submaterials) {
+        Object.entries(materialContent.submaterials).map(([_, submaterial]) => {
+          if (submaterial.props.timelineRange) {
+            timelineRanges.push(submaterial.props.timelineRange);
+          }
+        });
+      }
+
+      setTimelineRanges(timelineRanges);
+    }
+
+    const fromId = materialContent.props.lineFromId;
+    const toId = materialContent.props.lineToId;
+    const color = materialContent.theme.colorValue;
+    if (fromId && toId) {
+      setLines([{ fromId, toId, color }]);
+    }
+  }, [materialContent]);
 
   if (!materialContent) {
     return <div>Unknown material</div>;
