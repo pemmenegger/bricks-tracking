@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import Timeline from "@/components/layout/Timeline";
 import { TimelineProvider } from "@/context/TimelineContext";
 import { useRouter } from "next/router";
+import BrickTower from "./BrickTower";
 
 export default function MaterialsLayout({
   children,
@@ -18,31 +19,7 @@ export default function MaterialsLayout({
           <div className="flex gap-6">
             {/* Left Tower with Clickable Bricks */}
             <div className="w-1/3 flex justify-center">
-              <div className="relative max-h-[600px]">
-                <img
-                  src="/brick-tower.svg"
-                  alt="Tower Diagram"
-                  className="max-h-[600px] object-contain"
-                />
-
-                {/* Clickable Bricks */}
-                {[
-                  { id: "brick-r", top: "10%", left: "30%" },
-                  { id: "brick-v", top: "25%", left: "50%" },
-                  { id: "brick-z", top: "45%", left: "20%" },
-                  { id: "mortar", top: "60%", left: "40%" },
-                  { id: "lintel", top: "80%", left: "55%" },
-                ].map((brick) => (
-                  <img
-                    key={brick.id}
-                    src={`/materials/${brick.id.toLowerCase()}.png`} // Adjust path if needed
-                    alt={brick.id}
-                    onClick={() => router.push(`/materials/${brick.id}`)}
-                    className="w-10 h-10 absolute cursor-pointer animate-pulse-fast"
-                    style={{ top: brick.top, left: brick.left }}
-                  />
-                ))}
-              </div>
+              <BrickTower />
             </div>
 
             {children}

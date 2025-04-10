@@ -5,6 +5,13 @@ export interface MaterialTheme {
   colorValue: string;
 }
 
+export const InsiemeTheme: MaterialTheme = {
+  textColorClass: "text-white",
+  bgColorClass: "bg-gray",
+  borderColor: "border-gray",
+  colorValue: "var(--color-gray)",
+};
+
 export const BrickRTheme: MaterialTheme = {
   textColorClass: "text-white",
   bgColorClass: "bg-sun",

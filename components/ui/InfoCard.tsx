@@ -1,40 +1,41 @@
 import React, { FC, ReactNode } from "react";
-import { MaterialTheme } from "@/components/materials/themes";
+import { MaterialProps } from "../materials/props";
+import { MaterialTheme } from "../materials/themes";
 
-interface InfoItem {
+export interface InfoItem {
   label: string;
   value: ReactNode;
 }
 
 export interface InfoCardProps {
-  title: string;
-  subtitle: string;
-  theme: MaterialTheme;
+  materialProps: MaterialProps;
+  materialTheme: MaterialTheme;
   info: InfoItem[];
-  imageSrc?: string;
-  className?: string;
 }
 
 const InfoCard: FC<InfoCardProps> = ({
-  title,
-  subtitle,
+  materialProps,
+  materialTheme,
   info = [],
-  theme,
-  imageSrc,
-  className = "",
 }) => {
   return (
     <div
-      className={`rounded-xl border border-3 w-[240px] shadow-sm ${className} ${theme.borderColor}`}
+      className={`rounded-xl border border-3 w-[240px] shadow-sm ${materialTheme.borderColor}`}
     >
-      <div className={`mx-auto w-2/3  py-1 rounded-b-xl ${theme.bgColorClass}`}>
-        <p className={`text-lg font-bold text-center ${theme.textColorClass}`}>
-          {title}
+      <div
+        className={`mx-auto w-2/3  py-1 rounded-b-xl ${materialTheme.bgColorClass}`}
+      >
+        <p
+          className={`text-lg font-bold text-center ${materialTheme.textColorClass}`}
+        >
+          {materialProps.title}
         </p>
       </div>
 
-      {subtitle && (
-        <div className="text-xs text-center text-gray-600 my-2">{subtitle}</div>
+      {materialProps.subtitle && (
+        <div className="text-xs text-center text-gray-600 my-2">
+          {materialProps.subtitle}
+        </div>
       )}
 
       <div className="space-y-2 w-full px-4 pb-4">
@@ -51,11 +52,11 @@ const InfoCard: FC<InfoCardProps> = ({
             </div>
           </div>
         ))}
-        {imageSrc && (
+        {materialProps.cardImageSrc && (
           <div className="mt-4 w-full">
             <img
-              src={imageSrc}
-              alt={`Image for ${title}`}
+              src={materialProps.cardImageSrc}
+              alt={`Image for ${materialProps.title}`}
               className="w-full h-auto rounded-md"
             />
           </div>

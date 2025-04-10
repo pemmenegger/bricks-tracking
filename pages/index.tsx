@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { useVideoOverlay } from "@/context/VideoOverlayContext";
+import { useEffect } from "react";
+import { useLineDrawer } from "@/context/LineDrawerContext";
 
 export default function Home() {
   const { openVideo } = useVideoOverlay();
+
+  const { clearLines } = useLineDrawer();
+  useEffect(() => {
+    clearLines();
+  }, []);
 
   return (
     <main className="min-h-screen flex">

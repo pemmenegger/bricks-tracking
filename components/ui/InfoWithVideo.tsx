@@ -2,17 +2,20 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import InfoCard, { InfoCardProps } from "@/components/ui/InfoCard";
 import PlayButton from "@/components/ui/PlayButton";
 import { useVideoOverlay } from "@/context/VideoOverlayContext";
+import { MaterialWithVideoProps } from "../materials/props";
+import { MaterialTheme } from "../materials/themes";
+import { InfoItem } from "./InfoCard";
 
 interface InfoWithVideoProps {
-  infoCardProps: InfoCardProps;
-  thumbnailSrc: string;
-  videoSrc: string;
+  materialProps: MaterialWithVideoProps;
+  materialTheme: MaterialTheme;
+  info: InfoItem[];
 }
 
 const InfoWithVideo: FC<InfoWithVideoProps> = ({
-  infoCardProps,
-  thumbnailSrc,
-  videoSrc,
+  materialProps,
+  materialTheme,
+  info = [],
 }) => {
   const { openVideo } = useVideoOverlay();
 
@@ -33,24 +36,28 @@ const InfoWithVideo: FC<InfoWithVideoProps> = ({
 
   return (
     <div className="flex flex-row gap-4 items-start">
-      <div className="w-[240px]">
+      <div className="w-[240px]" id={materialProps.lineToId}>
         <div ref={infoCardRef}>
-          <InfoCard {...infoCardProps} />
+          <InfoCard
+            materialProps={materialProps}
+            materialTheme={materialTheme}
+            info={info}
+          />
         </div>
       </div>
       <div
-        className={`flex-grow rounded-xl overflow-hidden border border-3 shadow-sm ${infoCardProps.theme.borderColor}`}
+        className={`flex-grow rounded-xl overflow-hidden border border-3 shadow-sm ${materialTheme.borderColor}`}
         style={{ height: cardHeight ?? "auto" }}
       >
         <div className="relative h-full w-full flex items-center justify-center bg-black">
           <img
-            src={thumbnailSrc}
+            src={materialProps.thumbnailSrc}
             alt="Video thumbnail"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <span onClick={() => openVideo(videoSrc)}>
-              <PlayButton primaryColor={infoCardProps.theme.colorValue} />
+            <span onClick={() => openVideo(materialProps.videoSrc)}>
+              <PlayButton primaryColor={materialTheme.colorValue} />
             </span>
           </div>
         </div>
