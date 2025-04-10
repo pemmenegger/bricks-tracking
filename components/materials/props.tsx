@@ -5,9 +5,11 @@ import {
   LintelTheme,
   MortarTheme,
 } from "./themes";
-import { TimelineColoredRange } from "@/components/layout/Timeline";
+import { TimelineColoredRange } from "@/components/ui/Timeline";
 
 export interface MaterialProps {
+  slug: string;
+  path: string;
   title: string;
   subtitle: string;
   lineFromId?: string;
@@ -16,20 +18,27 @@ export interface MaterialProps {
   timelineColoredRanges: TimelineColoredRange[];
 }
 
-export interface MaterialWithVideoProps extends MaterialProps {
+export interface MaterialVideoProps {
   thumbnailSrc: string;
   videoSrc: string;
 }
 
-export const InsiemeProps: MaterialWithVideoProps = {
+export const InsiemeProps: MaterialProps = {
+  slug: "",
+  path: "/materials",
   title: "INSIEME",
   subtitle: "En_25_50_04",
   timelineColoredRanges: [],
+};
+
+export const InsiemeVideoProps: MaterialVideoProps = {
   thumbnailSrc: "/materials/brick-r-thumbnail.png",
   videoSrc: "/example.webm",
 };
 
-export const BrickRProps: MaterialWithVideoProps = {
+export const BrickRProps: MaterialProps = {
+  slug: "brick-r",
+  path: "/materials/brick-r",
   title: "BRICK_R",
   subtitle: "En_25_50_04",
   lineFromId: "brick-r-line-from",
@@ -43,11 +52,52 @@ export const BrickRProps: MaterialWithVideoProps = {
       area: "full",
     },
   ],
+};
+
+export const BrickRVideoProps: MaterialVideoProps = {
   thumbnailSrc: "/materials/brick-r-thumbnail.png",
   videoSrc: "/example.webm",
 };
 
-export const BrickVProps: MaterialWithVideoProps = {
+export const BrickRCementProps: MaterialProps = {
+  slug: "brick-r-cement",
+  path: "/materials/brick-r/brick-r-cement",
+  title: "CEMENT",
+  subtitle: "En_25_50_04",
+  lineFromId: BrickRProps.lineToId!,
+  lineToId: "brick-r-cement-line-to",
+  cardImageSrc: "/materials/brick-r-map.png",
+  timelineColoredRanges: [
+    {
+      startYear: 1900,
+      endYear: 2030,
+      bgColorClass: BrickRTheme.bgColorClass,
+      area: "full",
+    },
+  ],
+};
+
+export const BrickRSawdustProps: MaterialProps = {
+  slug: "brick-r-sawdust",
+  path: "/materials/brick-r/brick-r-sawdust",
+  title: "SAWDUST",
+  subtitle: "En_25_50_04",
+  lineFromId: BrickRProps.lineToId!,
+  lineToId: "brick-r-sawdust-line-to",
+  cardImageSrc: "/materials/brick-r-map.png",
+  timelineColoredRanges: [
+    {
+      startYear: 1900,
+      endYear: 2030,
+      bgColorClass: BrickRTheme.bgColorClass,
+      area: "full",
+    },
+  ],
+};
+
+export const BrickVProps: MaterialProps = {
+  slug: "brick-v",
+  path: "/materials/brick-v",
   title: "BRICK_V",
   subtitle: "En_25_50_04",
   lineFromId: "brick-v-line-from",
@@ -60,11 +110,16 @@ export const BrickVProps: MaterialWithVideoProps = {
       area: "full",
     },
   ],
+};
+
+export const BrickVVideoProps: MaterialVideoProps = {
   thumbnailSrc: "/materials/brick-r-thumbnail.png",
   videoSrc: "/example.webm",
 };
 
-export const BrickZProps: MaterialWithVideoProps = {
+export const BrickZProps: MaterialProps = {
+  slug: "brick-z",
+  path: "/materials/brick-z",
   title: "BRICK_Z",
   subtitle: "En_25_50_04",
   lineFromId: "brick-z-line-from",
@@ -78,11 +133,16 @@ export const BrickZProps: MaterialWithVideoProps = {
       area: "full",
     },
   ],
+};
+
+export const BrickZVideoProps: MaterialVideoProps = {
   thumbnailSrc: "/materials/brick-r-thumbnail.png",
   videoSrc: "/example.webm",
 };
 
-export const MortarProps: MaterialWithVideoProps = {
+export const MortarProps: MaterialProps = {
+  slug: "mortar",
+  path: "/materials/mortar",
   title: "MORTAR",
   subtitle: "En_25_50_04",
   lineFromId: "brick-mortar-line-from",
@@ -95,11 +155,16 @@ export const MortarProps: MaterialWithVideoProps = {
       area: "full",
     },
   ],
+};
+
+export const MortarVideoProps: MaterialVideoProps = {
   thumbnailSrc: "/materials/brick-r-thumbnail.png",
   videoSrc: "/example.webm",
 };
 
-export const LintelProps: MaterialWithVideoProps = {
+export const LintelProps: MaterialProps = {
+  slug: "lintel",
+  path: "/materials/lintel",
   title: "LINTEL",
   subtitle: "En_25_50_04",
   lineFromId: "brick-lintel-line-from",
@@ -112,6 +177,9 @@ export const LintelProps: MaterialWithVideoProps = {
       area: "full",
     },
   ],
+};
+
+export const LintelVideoProps: MaterialVideoProps = {
   thumbnailSrc: "/materials/brick-r-thumbnail.png",
   videoSrc: "/example.webm",
 };

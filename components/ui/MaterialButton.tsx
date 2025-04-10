@@ -1,22 +1,23 @@
 import React from "react";
-import { MaterialTheme } from "../materials/themes";
+import { useRouter } from "next/router";
 
 interface MaterialButtonProps {
   label: string;
   bgColorClass: string;
   textColorClass: string;
-  onClick?: () => void;
+  toPath?: string;
 }
 
 const MaterialButton: React.FC<MaterialButtonProps> = ({
   label,
   bgColorClass,
   textColorClass,
-  onClick,
+  toPath,
 }) => {
+  const router = useRouter();
   return (
     <button
-      onClick={onClick}
+      onClick={toPath ? () => router.push(toPath) : undefined}
       className={`text-center h-[18px] flex items-center justify-center rounded-md shadow-md font-bold text-sm tracking-widest uppercase ${bgColorClass} ${textColorClass}`}
     >
       {label}

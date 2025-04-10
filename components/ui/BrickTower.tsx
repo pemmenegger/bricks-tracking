@@ -19,31 +19,31 @@ export default function BrickTower() {
       />
       {[
         {
-          id: "brick-r",
+          id: BrickRProps.slug,
           lineFromId: BrickRProps.lineFromId!,
           top: "10%",
           left: "30%",
         },
         {
-          id: "brick-v",
+          id: BrickVProps.slug,
           lineFromId: BrickVProps.lineFromId!,
           top: "25%",
           left: "50%",
         },
         {
-          id: "brick-z",
+          id: BrickZProps.slug,
           lineFromId: BrickZProps.lineFromId!,
           top: "45%",
           left: "20%",
         },
         {
-          id: "mortar",
+          id: MortarProps.slug,
           lineFromId: MortarProps.lineFromId!,
           top: "60%",
           left: "40%",
         },
         {
-          id: "lintel",
+          id: LintelProps.slug,
           lineFromId: LintelProps.lineFromId!,
           top: "80%",
           left: "55%",

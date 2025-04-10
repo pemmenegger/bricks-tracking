@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { TimelineColoredRange } from "@/components/layout/Timeline";
+import { TimelineColoredRange } from "@/components/ui/Timeline";
 
 type TimelineContextType = {
   highlightRanges: TimelineColoredRange[];

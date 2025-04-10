@@ -10,13 +10,13 @@ export interface InfoItem {
 export interface InfoCardProps {
   materialProps: MaterialProps;
   materialTheme: MaterialTheme;
-  info: InfoItem[];
+  materialInfo: InfoItem[];
 }
 
 const InfoCard: FC<InfoCardProps> = ({
   materialProps,
   materialTheme,
-  info = [],
+  materialInfo = [],
 }) => {
   return (
     <div
@@ -39,7 +39,7 @@ const InfoCard: FC<InfoCardProps> = ({
       )}
 
       <div className="space-y-2 w-full px-4 pb-4">
-        {info.map((item, idx) => (
+        {materialInfo.map((item, idx) => (
           <div
             key={idx}
             className="flex flex-col sm:flex-row items-start text-sm"
