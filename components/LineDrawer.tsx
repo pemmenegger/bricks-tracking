@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface Props {
   fromId: string | null;
@@ -18,7 +18,9 @@ const PIXEL_SIZE = 3;
 const LineDrawer: React.FC<Props> = ({ fromId, toId, color }) => {
   const [segments, setSegments] = useState<Segment[]>([]);
 
-  const updateLines = () => {
+  const getElementCenterY = (rect: DOMRect) => rect.top + rect.height / 2;
+
+  const calculateSegments = useCallback(() => {
     if (!fromId || !toId) return;
 
     const fromEl = document.getElementById(fromId);
@@ -29,45 +31,50 @@ const LineDrawer: React.FC<Props> = ({ fromId, toId, color }) => {
     const toRect = toEl.getBoundingClientRect();
 
     const fromX = fromRect.right;
-    const fromY = fromRect.top + fromRect.height / 2;
+    const fromY = getElementCenterY(fromRect);
     const toX = toRect.left;
-    const toY = toRect.top + toRect.height / 2;
-
+    const toY = getElementCenterY(toRect);
     const midX = (fromX + toX) / 2;
 
-    const newSegments: Segment[] = [
+    setSegments([
       {
-        top: fromY,
+        top: fromY - PIXEL_SIZE / 2,
         left: fromX,
         width: midX - fromX,
         height: PIXEL_SIZE,
       },
       {
         top: Math.min(fromY, toY),
-        left: midX,
+        left: midX - PIXEL_SIZE / 2,
         width: PIXEL_SIZE,
         height: Math.abs(toY - fromY),
       },
       {
-        top: toY,
+        top: toY - PIXEL_SIZE / 2,
         left: midX,
         width: toX - midX,
         height: PIXEL_SIZE,
       },
-    ];
-
-    setSegments(newSegments);
-  };
+    ]);
+  }, [fromId, toId]);
 
   useEffect(() => {
-    updateLines();
-    window.addEventListener("resize", updateLines);
-    window.addEventListener("scroll", updateLines, true);
-    return () => {
-      window.removeEventListener("resize", updateLines);
-      window.removeEventListener("scroll", updateLines, true);
+    let animationFrameId: number;
+
+    const handleUpdate = () => {
+      animationFrameId = requestAnimationFrame(calculateSegments);
     };
-  }, [fromId, toId]);
+
+    handleUpdate();
+    window.addEventListener("resize", handleUpdate);
+    window.addEventListener("scroll", handleUpdate, true);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleUpdate);
+      window.removeEventListener("scroll", handleUpdate, true);
+    };
+  }, [calculateSegments]);
 
   return (
     <>
