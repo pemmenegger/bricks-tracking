@@ -33,12 +33,5 @@ export default function MaterialPage() {
     return <div>No video</div>;
   }
 
-  return (
-    <MaterialLayout
-      materialProps={materialContent.props}
-      materialVideoProps={materialContent.videoProps}
-      materialTheme={materialContent.theme}
-      materialInfo={materialContent.infos}
-    />
-  );
+  return <MaterialLayout materialContent={materialContent} />;
 }

@@ -1,4 +1,6 @@
 import {
+  InsiemeProps,
+  InsiemeVideoProps,
   BrickRProps,
   BrickVProps,
   BrickZProps,
@@ -16,6 +18,7 @@ import {
 } from "@/components/materials/props";
 
 import {
+  InsiemeTheme,
   BrickRCementTheme,
   BrickRSawdustTheme,
   BrickRTheme,
@@ -25,7 +28,9 @@ import {
   MortarTheme,
   MaterialTheme,
 } from "@/components/materials/themes";
+
 import {
+  InsiemeInfos,
   BrickRInfos,
   BrickVInfos,
   BrickZInfos,
@@ -45,6 +50,12 @@ export type MaterialContent = {
 };
 
 export const MaterialContentMap: Record<string, MaterialContent> = {
+  [InsiemeProps.slug]: {
+    props: InsiemeProps,
+    videoProps: InsiemeVideoProps,
+    theme: InsiemeTheme,
+    infos: InsiemeInfos,
+  },
   [BrickRProps.slug]: {
     props: BrickRProps,
     videoProps: BrickRVideoProps,
